@@ -53,7 +53,7 @@ class PopularFoodDetail extends StatelessWidget {
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(Dimension.radius20),
                             topLeft: Radius.circular(Dimension.radius20)),
-                        color: Colors.white),
+                        color: Colors.redAccent),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -67,9 +67,13 @@ class PopularFoodDetail extends StatelessWidget {
                         SizedBox(
                           height: Dimension.height20,
                         ),
-                        ExpandableText(
-                            text:
-                                "jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll")
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: ExpandableText(
+                                text:
+                                    "chicken dispensable loremipsum chicken dispensable, loremipsum chicken dispensable, loremipsum chicken dispensable loremipsum chicken dispensable, loremipsum chicken dispensable loremipsum chicken dispensable loremipsum chicken dispensable loremipsum chicken dispensable loremipsum dispensable loremipsum chicken dispensable loremipsum chicken dispensable, loremipsum chicken dispensable loremipsum chicken dispensable loremipsum chicken dispensable loremipsum chicken dispensable loremipsum dispensable loremipsum chicken dispensable loremipsum chicken dispensable, loremipsum chicken dispensable loremipsum chicken dispensable loremipsum chicken dispensable loremipsum chicken dispensable loremipsum dispensable loremipsum chicken dispensable loremipsum chicken dispensable, loremipsum chicken dispensable loremipsum chicken dispensable loremipsum dispensable loremipsum dispensable loremipsum"),
+                          ),
+                        )
                       ],
                     )))
 
