@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimension.dart';
+import 'package:food_delivery/widgets/small_text.dart';
 
 class ExpandableText extends StatefulWidget {
-  const ExpandableText({Key? key}) : super(key: key);
-
-  get text => String;
+  final String text;
+  const ExpandableText({
+    Key? key,
+    required this.text,
+  }) : super(key: key);
 
   @override
   State<ExpandableText> createState() => _ExpandableTextState();
@@ -33,6 +37,32 @@ class _ExpandableTextState extends State<ExpandableText> {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+      child: secondHalf.isEmpty
+          ? SmallText(text: firstHalf)
+          : Column(
+              children: [
+                SmallText(
+                    text: hiddenText
+                        ? (firstHalf + ('...'))
+                        : (firstHalf + secondHalf)),
+                InkWell(
+                  onTap: () {},
+                  child: Row(
+                    children: [
+                      SmallText(
+                        text: "show more",
+                        color: AppColors.mainColor,
+                      ),
+                      Icon(
+                        Icons.arrow_drop_down,
+                        color: AppColors.mainColor,
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+    );
   }
 }
