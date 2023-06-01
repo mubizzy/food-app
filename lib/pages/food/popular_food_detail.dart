@@ -15,6 +15,7 @@ class PopularFoodDetail extends StatelessWidget {
     return Scaffold(
         body: Stack(
           children: [
+            // background image
             Positioned(
               left: 0,
               right: 0,
@@ -27,6 +28,7 @@ class PopularFoodDetail extends StatelessWidget {
                         image: AssetImage("assets/image/img5.png"))),
               ),
             ),
+            // icon widgets
             Positioned(
                 left: Dimension.width20,
                 right: Dimension.width20,
@@ -37,6 +39,7 @@ class PopularFoodDetail extends StatelessWidget {
                     AppIcon(icon: Icons.shopping_cart_outlined)
                   ],
                 )),
+            // introduction of food
             Positioned(
                 left: 0,
                 right: 0,
@@ -64,6 +67,8 @@ class PopularFoodDetail extends StatelessWidget {
                         BigText(text: "Introduce")
                       ],
                     )))
+
+            // expandable text widget
           ],
         ),
         bottomNavigationBar: Container(
