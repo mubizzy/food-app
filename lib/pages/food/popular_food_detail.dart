@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimension.dart';
+import 'package:food_delivery/widgets/app_column.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/icon_and_text_widget.dart';
@@ -13,87 +14,84 @@ class PopularFoodDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
-      children: [
-        Positioned(
-          left: 0,
-          right: 0,
-          child: Container(
-            width: double.maxFinite,
-            height: Dimension.popularFoodImgSize,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage("assets/image/img5.png"))),
-          ),
-        ),
-        Positioned(
-            left: Dimension.width20,
-            right: Dimension.width20,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                AppIcon(icon: Icons.arrow_back_ios),
-                AppIcon(icon: Icons.shopping_cart_outlined)
-              ],
-            )),
-        Positioned(
-            left: 0,
-            right: 0,
-            top: Dimension.popularFoodImgSize,
-            child: Container(
-              padding: EdgeInsets.only(
-                  left: Dimension.width20,
-                  right: Dimension.width20,
-                  top: Dimension.height20),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Dimension.radius20),
-                  color: Colors.white),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  BigText(text: "Chinese Side"),
-                  SizedBox(height: 10),
-                  Row(children: [
-                    Wrap(
-                        children: List.generate(
-                            5,
-                            (index) =>
-                                Icon(Icons.star, color: AppColors.mainColor))),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    SmallText(text: "4.5"),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    SmallText(text: "comments")
-                  ]),
-                  SizedBox(height: 20),
-                  Row(
-                    children: [
-                      IconAndTextWidget(
-                        icon: Icons.circle_sharp,
-                        text: "Normal",
-                        iconColor: AppColors.iconColor1,
-                      ),
-                      SizedBox(width: 10),
-                      IconAndTextWidget(
-                        icon: Icons.location_on,
-                        text: "1.7km",
-                        iconColor: AppColors.mainColor,
-                      ),
-                      SizedBox(width: 10),
-                      IconAndTextWidget(
-                        icon: Icons.access_time_rounded,
-                        text: "32min",
-                        iconColor: AppColors.iconColor2,
-                      )
-                    ],
-                  )
-                ],
+          children: [
+            Positioned(
+              left: 0,
+              right: 0,
+              child: Container(
+                width: double.maxFinite,
+                height: Dimension.popularFoodImgSize,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage("assets/image/img5.png"))),
               ),
-            ))
-      ],
-    ));
+            ),
+            Positioned(
+                left: Dimension.width20,
+                right: Dimension.width20,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppIcon(icon: Icons.arrow_back_ios),
+                    AppIcon(icon: Icons.shopping_cart_outlined)
+                  ],
+                )),
+            Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                top: Dimension.popularFoodImgSize - 20,
+                child: Container(
+                    padding: EdgeInsets.only(
+                        left: Dimension.width20,
+                        right: Dimension.width20,
+                        top: Dimension.height20),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(Dimension.radius20),
+                            topLeft: Radius.circular(Dimension.radius20)),
+                        color: Colors.white),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AppColumn(
+                          text: "Chinese Side",
+                        ),
+                        SizedBox(
+                          height: Dimension.height20,
+                        ),
+                        BigText(text: "Introduce")
+                      ],
+                    )))
+          ],
+        ),
+        bottomNavigationBar: Container(
+            height: 120,
+            padding: EdgeInsets.only(
+                top: Dimension.height30,
+                bottom: Dimension.height30,
+                left: Dimension.width20,
+                right: Dimension.width20),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(Dimension.radius20 * 20)),
+                color: AppColors.buttonBackgroundColor),
+            child: Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(Dimension.radius20),
+                      color: Colors.white),
+                  child: Row(
+                    children: [
+                      Icon(Icons.remove, color: AppColors.signColor),
+                      BigText(text: "0"),
+                      Icon(Icons.add, color: AppColors.signColor)
+                    ],
+                  ),
+                )
+              ],
+            )));
   }
 }
