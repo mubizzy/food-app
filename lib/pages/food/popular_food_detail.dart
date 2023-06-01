@@ -67,7 +67,6 @@ class PopularFoodDetail extends StatelessWidget {
           ],
         ),
         bottomNavigationBar: Container(
-            height: 120,
             padding: EdgeInsets.only(
                 top: Dimension.height30,
                 bottom: Dimension.height30,
@@ -78,18 +77,42 @@ class PopularFoodDetail extends StatelessWidget {
                     topLeft: Radius.circular(Dimension.radius20 * 20)),
                 color: AppColors.buttonBackgroundColor),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
+                  padding: EdgeInsets.only(
+                      top: Dimension.height20,
+                      bottom: Dimension.height20,
+                      left: Dimension.width20,
+                      right: Dimension.width20),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(Dimension.radius20),
                       color: Colors.white),
                   child: Row(
                     children: [
                       Icon(Icons.remove, color: AppColors.signColor),
+                      SizedBox(
+                        width: Dimension.width10,
+                      ),
                       BigText(text: "0"),
+                      SizedBox(
+                        width: Dimension.width10 / 2,
+                      ),
                       Icon(Icons.add, color: AppColors.signColor)
                     ],
                   ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(
+                      top: Dimension.height20,
+                      bottom: Dimension.height20,
+                      left: Dimension.width20,
+                      right: Dimension.width20),
+                  child:
+                      BigText(text: "\$10 | Add to cart", color: Colors.white),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(Dimension.radius20),
+                      color: AppColors.mainColor),
                 )
               ],
             )));
