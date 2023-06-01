@@ -4,8 +4,7 @@ import 'package:food_delivery/utils/dimension.dart';
 import 'package:food_delivery/widgets/app_column.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/big_text.dart';
-import 'package:food_delivery/widgets/icon_and_text_widget.dart';
-import 'package:food_delivery/widgets/small_text.dart';
+import 'package:food_delivery/widgets/expandable_text.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   const PopularFoodDetail({Key? key}) : super(key: key);
@@ -64,7 +63,13 @@ class PopularFoodDetail extends StatelessWidget {
                         SizedBox(
                           height: Dimension.height20,
                         ),
-                        BigText(text: "Introduce")
+                        BigText(text: "Introduce"),
+                        SizedBox(
+                          height: Dimension.height20,
+                        ),
+                        ExpandableText(
+                            text:
+                                "jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll jjjllll")
                       ],
                     )))
 
