@@ -44,10 +44,14 @@ class _ExpandableTextState extends State<ExpandableText> {
               children: [
                 SmallText(
                     text: hiddenText
-                        ? (firstHalf + ('...'))
+                        ? (firstHalf + '...')
                         : (firstHalf + secondHalf)),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    setState(() {
+                      hiddenText = !hiddenText;
+                    });
+                  },
                   child: Row(
                     children: [
                       SmallText(
@@ -55,7 +59,9 @@ class _ExpandableTextState extends State<ExpandableText> {
                         color: AppColors.mainColor,
                       ),
                       Icon(
-                        Icons.arrow_drop_down,
+                        hiddenText
+                            ? Icons.arrow_drop_down
+                            : Icons.arrow_drop_up,
                         color: AppColors.mainColor,
                       )
                     ],
