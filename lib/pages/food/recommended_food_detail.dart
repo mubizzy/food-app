@@ -73,18 +73,64 @@ class RecommendeFoodDetail extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AppIcon(
-                    iconSize: Dimension.iconSize16,
+                    iconSize: Dimension.iconSize24,
                     backgroundColor: AppColors.mainColor,
                     iconColor: Colors.white,
                     icon: Icons.remove),
+                BigText(
+                  text: "\$12.88 " + " X " + " 0 ",
+                  color: AppColors.mainColor,
+                  size: Dimension.font26,
+                ),
                 AppIcon(
-                    iconSize: Dimension.iconSize16,
+                    iconSize: Dimension.iconSize24,
                     backgroundColor: AppColors.mainColor,
                     iconColor: Colors.white,
                     icon: Icons.add),
               ],
             ),
-          )
+          ),
+          Container(
+              padding: EdgeInsets.only(
+                  top: Dimension.height30,
+                  bottom: Dimension.height30,
+                  left: Dimension.width20,
+                  right: Dimension.width20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(Dimension.radius20 * 20)),
+                  color: AppColors.buttonBackgroundColor),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                      padding: EdgeInsets.only(
+                          top: Dimension.height20,
+                          bottom: Dimension.height20,
+                          left: Dimension.width20,
+                          right: Dimension.width20),
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(Dimension.radius20),
+                          color: Colors.white),
+                      child: Icon(
+                        Icons.favorite,
+                        color: AppColors.mainColor,
+                      )),
+                  Container(
+                    padding: EdgeInsets.only(
+                        top: Dimension.height20,
+                        bottom: Dimension.height20,
+                        left: Dimension.width20,
+                        right: Dimension.width20),
+                    child: BigText(
+                        text: "\$10 | Add to cart", color: Colors.white),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(Dimension.radius20),
+                        color: AppColors.mainColor),
+                  )
+                ],
+              ))
         ],
       ),
     );
