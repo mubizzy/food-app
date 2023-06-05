@@ -1,24 +1,41 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:food_delivery/controller/recommended_product_controller.dart';
+import 'package:food_delivery/utils/app_constants.dart';
+import 'package:get/get.dart';
+
+import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimension.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/expandable_text.dart';
 
-class RecommendeFoodDetail extends StatelessWidget {
-  const RecommendeFoodDetail({Key? key}) : super(key: key);
+class RecommendedFoodDetail extends StatelessWidget {
+  int pageId;
+  RecommendedFoodDetail({
+    Key? key,
+    required this.pageId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<RecommendedProductContoller>().recommendedProductList[pageId];
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: 70,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.clear),
+                GestureDetector(
+                    onTap: () {
+                      Get.toNamed(RouteHelper.getInitial());
+                    },
+                    child: AppIcon(icon: Icons.clear)),
                 AppIcon(icon: Icons.shopping_cart_checkout_outlined),
               ],
             ),
@@ -27,7 +44,7 @@ class RecommendeFoodDetail extends StatelessWidget {
               child: Container(
                 // margin: EdgeInsets.only(
                 //     left: Dimension.width20, right: Dimension.width20),
-                child: Center(child: BigText(size: 20, text: "Chinese Side")),
+                child: Center(child: BigText(size: 20, text: product.name!)),
                 width: double.maxFinite,
                 padding: EdgeInsets.only(top: 5, bottom: 10),
                 decoration: BoxDecoration(
@@ -41,8 +58,8 @@ class RecommendeFoodDetail extends StatelessWidget {
             pinned: true,
             backgroundColor: AppColors.yellowColor,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                "assets/image/food0.png",
+              background: Image.network(
+                AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img!,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),
@@ -52,9 +69,7 @@ class RecommendeFoodDetail extends StatelessWidget {
               child: Column(
             children: [
               Container(
-                child: ExpandableText(
-                    text:
-                        "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc"),
+                child: ExpandableText(text: product.description!),
               )
             ],
           ))
@@ -78,7 +93,7 @@ class RecommendeFoodDetail extends StatelessWidget {
                     iconColor: Colors.white,
                     icon: Icons.remove),
                 BigText(
-                  text: "\$12.88 " + " X " + " 0 ",
+                  text: "\$ ${product.price}   X " " 0 ",
                   color: AppColors.mainColor,
                   size: Dimension.font26,
                 ),
