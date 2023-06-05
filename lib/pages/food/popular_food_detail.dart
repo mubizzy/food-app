@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/controller/popular_product_controller.dart';
+import 'package:food_delivery/utils/app_constants.dart';
+import 'package:get/get.dart';
+
+import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimension.dart';
 import 'package:food_delivery/widgets/app_column.dart';
@@ -7,10 +12,20 @@ import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/expandable_text.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({Key? key}) : super(key: key);
+  int pageId;
+  PopularFoodDetail({
+    Key? key,
+    required this.pageId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductContoller>().popularProductList[pageId];
+    // print("page is id" + pageId.toString());
+
+    // print("product name is " + product.name.toString());
+    Get.find<PopularProductContoller>().initProduct();
     return Scaffold(
         body: Stack(
           children: [
@@ -24,7 +39,9 @@ class PopularFoodDetail extends StatelessWidget {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage("assets/image/img5.png"))),
+                        image: NetworkImage(AppConstants.BASE_URL +
+                            AppConstants.UPLOAD_URL +
+                            product.img!))),
               ),
             ),
             // icon widgets
@@ -34,7 +51,11 @@ class PopularFoodDetail extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    AppIcon(icon: Icons.arrow_back_ios),
+                    GestureDetector(
+                        onTap: () {
+                          Get.to(() => MainFoodPage());
+                        },
+                        child: AppIcon(icon: Icons.arrow_back_ios)),
                     AppIcon(icon: Icons.shopping_cart_outlined)
                   ],
                 )),
@@ -53,12 +74,12 @@ class PopularFoodDetail extends StatelessWidget {
                         borderRadius: BorderRadius.only(
                             topRight: Radius.circular(Dimension.radius20),
                             topLeft: Radius.circular(Dimension.radius20)),
-                        color: Colors.redAccent),
+                        color: Colors.white),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AppColumn(
-                          text: "Chinese Side",
+                          text: product.name!,
                         ),
                         SizedBox(
                           height: Dimension.height20,
@@ -69,9 +90,7 @@ class PopularFoodDetail extends StatelessWidget {
                         ),
                         Expanded(
                           child: SingleChildScrollView(
-                            child: ExpandableText(
-                                text:
-                                    "chicken dispensable loremipsum chicken dispensable, loremipsum chicken dispensable, loremipsum chicken dispensable loremipsum chicken dispensable, loremipsum chicken dispensable loremipsum chicken dispensable loremipsum chicken dispensable loremipsum chicken dispensable loremipsum dispensable loremipsum chicken dispensable loremipsum chicken dispensable, loremipsum chicken dispensable loremipsum chicken dispensable loremipsum chicken dispensable loremipsum chicken dispensable loremipsum dispensable loremipsum chicken dispensable loremipsum chicken dispensable, loremipsum chicken dispensable loremipsum chicken dispensable loremipsum chicken dispensable loremipsum chicken dispensable loremipsum dispensable loremipsum chicken dispensable loremipsum chicken dispensable, loremipsum chicken dispensable loremipsum chicken dispensable loremipsum dispensable loremipsum dispensable loremipsum"),
+                            child: ExpandableText(text: product.description!),
                           ),
                         )
                       ],
@@ -80,55 +99,72 @@ class PopularFoodDetail extends StatelessWidget {
             // expandable text widget
           ],
         ),
-        bottomNavigationBar: Container(
-            padding: EdgeInsets.only(
-                top: Dimension.height30,
-                bottom: Dimension.height30,
-                left: Dimension.width20,
-                right: Dimension.width20),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(Dimension.radius20 * 20)),
-                color: AppColors.buttonBackgroundColor),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  padding: EdgeInsets.only(
-                      top: Dimension.height20,
-                      bottom: Dimension.height20,
-                      left: Dimension.width20,
-                      right: Dimension.width20),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Dimension.radius20),
-                      color: Colors.white),
-                  child: Row(
-                    children: [
-                      Icon(Icons.remove, color: AppColors.signColor),
-                      SizedBox(
-                        width: Dimension.width10,
+        bottomNavigationBar: GetBuilder<PopularProductContoller>(
+          builder: (popularPoduct) {
+            return Container(
+                padding: EdgeInsets.only(
+                    top: Dimension.height30,
+                    bottom: Dimension.height30,
+                    left: Dimension.width20,
+                    right: Dimension.width20),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(Dimension.radius20 * 20)),
+                    color: AppColors.buttonBackgroundColor),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(
+                          top: Dimension.height20,
+                          bottom: Dimension.height20,
+                          left: Dimension.width20,
+                          right: Dimension.width20),
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(Dimension.radius20),
+                          color: Colors.white),
+                      child: Row(
+                        children: [
+                          GestureDetector(
+                              onTap: () {
+                                popularPoduct.setQuantity(false);
+                              },
+                              child: Icon(Icons.remove,
+                                  color: AppColors.signColor)),
+                          SizedBox(
+                            width: Dimension.width10,
+                          ),
+                          BigText(text: popularPoduct.quantity.toString()),
+                          SizedBox(
+                            width: Dimension.width10 / 2,
+                          ),
+                          GestureDetector(
+                              onTap: () {
+                                popularPoduct.setQuantity(true);
+                              },
+                              child:
+                                  Icon(Icons.add, color: AppColors.signColor))
+                        ],
                       ),
-                      BigText(text: "0"),
-                      SizedBox(
-                        width: Dimension.width10 / 2,
-                      ),
-                      Icon(Icons.add, color: AppColors.signColor)
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(
-                      top: Dimension.height20,
-                      bottom: Dimension.height20,
-                      left: Dimension.width20,
-                      right: Dimension.width20),
-                  child:
-                      BigText(text: "\$10 | Add to cart", color: Colors.white),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Dimension.radius20),
-                      color: AppColors.mainColor),
-                )
-              ],
-            )));
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(
+                          top: Dimension.height20,
+                          bottom: Dimension.height20,
+                          left: Dimension.width20,
+                          right: Dimension.width20),
+                      child: BigText(
+                          text: "\$ ${product.price!} | Add to cart",
+                          color: Colors.white),
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(Dimension.radius20),
+                          color: AppColors.mainColor),
+                    )
+                  ],
+                ));
+          },
+        ));
   }
 }
