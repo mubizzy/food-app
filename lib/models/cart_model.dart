@@ -14,6 +14,7 @@ class CartModel {
     this.quantity,
     this.img,
     this.isExist,
+    this.time,
   });
 
   CartModel.fromJson(Map<String, dynamic> json) {
