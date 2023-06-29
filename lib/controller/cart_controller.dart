@@ -11,7 +11,7 @@ class CartController extends GetxController {
   CartController({
     required this.cartRepo,
   });
-  Map<int, CartModel> _items = {};
+  final Map<int, CartModel> _items = {};
   Map<int, CartModel> get items => _items;
 
 // cart functionality
@@ -36,7 +36,7 @@ class CartController extends GetxController {
         _items.remove(product.id);
       }
     } else {
-      if (quantity > 0) {
+      if (quantity >= 0) {
         _items.putIfAbsent(product.id!, () {
           // print("adding item to the cart " +
           //     product.id!.toString() +
