@@ -39,13 +39,17 @@ class PopularProductContoller extends GetxController {
     if (isIncrement) {
       // print("increment" + _quantity.toString());
       _quantity = checkQuantity(_quantity + 1);
-      print("number of items " + _quantity.toString());
+      // print("number of items " + _quantity.toString());
     } else {
       _quantity = checkQuantity(_quantity - 1);
-      print("decrement" + _quantity.toString());
+      // print("decrement" + _quantity.toString());
     }
     update();
   }
+
+  // _inCartItem =2
+  // _quantity=0;
+  // _quantity=-2;
 
   int checkQuantity(int quantity) {
     if ((_inCartItems + quantity) < 0) {
@@ -55,6 +59,10 @@ class PopularProductContoller extends GetxController {
         backgroundColor: AppColors.mainColor,
         colorText: Colors.white,
       );
+      if (_inCartItems > 0) {
+        _quantity = -_inCartItems;
+        return _quantity;
+      }
       return 0;
     } else if ((_inCartItems + quantity) > 20) {
       Get.snackbar(
