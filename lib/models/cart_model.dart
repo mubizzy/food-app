@@ -1,3 +1,5 @@
+import 'package:food_delivery/models/popular_product_model.dart';
+
 class CartModel {
   int? id;
   String? name;
@@ -6,6 +8,8 @@ class CartModel {
   bool? isExist;
   String? img;
   String? time;
+  // new changes made fr the integration of cart page
+  ProductModel? product;
 
   CartModel({
     this.id,
@@ -15,6 +19,8 @@ class CartModel {
     this.img,
     this.isExist,
     this.time,
+    // new changes made for the integration of cart page
+    this.product,
   });
 
   CartModel.fromJson(Map<String, dynamic> json) {
@@ -25,5 +31,7 @@ class CartModel {
     isExist = json['isExist'];
     img = json['img'];
     time = json['time'];
+    // making the quantity of the cart page dynamically
+    product = ProductModel.fromJson(json['product']);
   }
 }
