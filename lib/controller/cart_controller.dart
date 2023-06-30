@@ -29,6 +29,9 @@ class CartController extends GetxController {
           img: value.img,
           isExist: true,
           time: DateTime.now().toString(),
+          // new changes made for the integration of cart page
+          // making the quantity of the cart page dynamically
+          product: product,
         );
       });
 
@@ -53,6 +56,9 @@ class CartController extends GetxController {
             img: product.img,
             isExist: true,
             time: DateTime.now().toString(),
+            // new changes made for the integration of cart page
+            // making the quantity of the cart page dynamically
+            product: product,
           );
         });
       } else {
@@ -64,6 +70,8 @@ class CartController extends GetxController {
         );
       }
     }
+    // for updating the quantity value
+    update();
   }
 
   bool existInCart(ProductModel product) {
