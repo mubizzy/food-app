@@ -40,6 +40,26 @@ class CartPage extends StatelessWidget {
                     iconSize: Dimension.iconSize24,
                   ),
                 ],
+              )),
+          Positioned(
+              top: Dimension.height20 * 5,
+              left: Dimension.width20,
+              right: Dimension.width20,
+              bottom: 0,
+              child: Container(
+                color: Colors.red,
+                child: ListView.builder(
+                    itemCount: 10,
+                    itemBuilder: (_, index) {
+                      return Container(
+                        height: 100,
+                        width: 100,
+                        color: Colors.blue,
+                        margin: EdgeInsets.only(
+                          bottom: 10,
+                        ),
+                      );
+                    }),
               ))
         ],
       ),
