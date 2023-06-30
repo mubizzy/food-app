@@ -93,6 +93,7 @@ class CartController extends GetxController {
     return totalQuantity;
   }
 
+// to list the item selected on the cart
   List<CartModel> get getItems {
     return _items.entries.map((e) {
       return e.value;
