@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controller/cart_controller.dart';
 import 'package:food_delivery/data/repository/popular_product_repo.dart';
+import 'package:food_delivery/models/cart_model.dart';
 import 'package:food_delivery/models/popular_product_model.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:get/get.dart';
@@ -109,5 +110,10 @@ class PopularProductContoller extends GetxController {
 
   int get totalItems {
     return _cart.totalItems;
+  }
+
+//  we need to update the list of items from the cart in the popular product controller
+  List<CartModel> get getItems {
+    return _cart.getItems;
   }
 }
