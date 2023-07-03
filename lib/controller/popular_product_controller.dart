@@ -86,11 +86,11 @@ class PopularProductContoller extends GetxController {
     var exist = false;
     exist = _cart.existInCart(product);
 
-    print("exist or not" + exist.toString());
+    // print("exist or not" + exist.toString());
     if (exist) {
       _inCartItems = _cart.getQuantity(product);
     }
-    print("the quantity in the cart is" + _inCartItems.toString());
+    // print("the quantity in the cart is" + _inCartItems.toString());
   }
 
   // connecting the cart functionality(cart repo,cart controller,cart model ) with product controller
@@ -100,10 +100,10 @@ class PopularProductContoller extends GetxController {
     _quantity = 0;
     _inCartItems = _cart.getQuantity(product);
     _cart.items.forEach((key, value) {
-      print("the id is " +
-          value.id.toString() +
-          " The quantity is " +
-          value.quantity.toString());
+      // print("the id is " +
+      //     value.id.toString() +
+      //     " The quantity is " +
+      //     value.quantity.toString());
     });
     update();
   }
