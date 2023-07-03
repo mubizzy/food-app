@@ -34,4 +34,18 @@ class CartModel {
     // making the quantity of the cart page dynamically
     product = ProductModel.fromJson(json['product']);
   }
+
+  // special decoding for cart history
+  Map<String, dynamic> toJson() {
+    return {
+      "id": this.id,
+      "name": this.name,
+      "quantity": this.quantity,
+      "price": this.price,
+      "isExist": this.isExist,
+      "img": this.img,
+      "time": this.time,
+      "product": this.product!.toJson(),
+    };
+  }
 }
